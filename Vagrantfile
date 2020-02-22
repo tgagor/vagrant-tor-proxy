@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "ubuntu/bionic64"
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine.
@@ -10,6 +10,8 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: 9050, host: 9050
   # privoxy service
   config.vm.network "forwarded_port", guest: 8118, host: 8118
+  # polipo service
+  config.vm.network "forwarded_port", guest: 8123, host: 8123
 
   # Share a folder with configuration to the guest VM
   config.vm.synced_folder "conf", "/vagrant"

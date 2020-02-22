@@ -1,0 +1,16 @@
+version: "3"
+services:
+  tor:
+    build: ./tor
+    image: tgagor/tor
+    ports:
+      - "9050:9050"
+  privoxy:
+    build: ./privoxy
+    image: tgagor/privoxy
+    ports:
+      - "8118:8118"
+    environment:
+      TOR_HOST: tor
+    links:
+      - tor

@@ -13,13 +13,10 @@ apt-get update
 apt-get dist-upgrade -y
 apt-get autoremove -y
 
-apt-get install -y deb.torproject.org-keyring
-apt-get install -y tor
-apt-get install -y privoxy
+apt-get install -y docker-ce docker-ce-cli containerd.io
 apt-get clean
 
-cp -av /vagrant/tor/* /etc/tor/
-cp -av /vagrant/privoxy/* /etc/privoxy/
+curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
 
-service tor restart
-service privoxy restart
+service docker restart

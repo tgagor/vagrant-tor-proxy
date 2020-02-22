@@ -24,6 +24,7 @@ SocksPort 0.0.0.0:9050 # Default: Bind to localhost:9050 for local connections.
 ## can access your SocksPort may be able to learn about the connections
 ## you make.
 SocksPolicy accept 192.168.0.0/16
+SocksPolicy accept 172.16.0.0/12
 SocksPolicy accept 10.0.0.0/8
 SocksPolicy accept 127.0.0.0/8
 SocksPolicy reject *
@@ -51,7 +52,7 @@ SocksPolicy reject *
 
 ## The directory for keeping all the keys/etc. By default, we store
 ## things in $HOME/.tor on Unix, and in Application Data\tor on Windows.
-#DataDirectory /var/lib/tor
+DataDirectory /var/lib/tor
 
 ## The port on which Tor will listen for local connections from Tor
 ## controller applications, as documented in control-spec.txt.
@@ -191,4 +192,3 @@ SocksPolicy reject *
 ## a private bridge, for example because you'll give out your bridge
 ## address manually to your friends, uncomment this line:
 #PublishServerDescriptor 0
-
