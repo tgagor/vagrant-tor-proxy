@@ -7,14 +7,19 @@ ENV TOR_PORT=9050
 
 # https://github.com/essandess/adblock2privoxy/tree/master/adblock2privoxy
 
-RUN apk --no-cache --update add privoxy && \
+RUN apk --no-cache --update add privoxy curl bash && \
     sed -i'' 's/127\.0\.0\.1:8118/0\.0\.0\.0:8118/' /etc/privoxy/config && \
     sed -i'' 's/^logfile/# logfile/' /etc/privoxy/config
+
+# https://wiki.archlinux.org/index.php/Privoxy#Ad_Blocking_with_Privoxy
+# COPY etc/ /etc/
+# RUN curl -fL https://raw.githubusercontent.com/Andrwe/privoxy-blocklist/master/privoxy-blocklist.sh -o /usr/local/bin/privoxy-blocklist.sh && \
+#     chmod +x /usr/local/bin/privoxy-blocklist.sh
 
 COPY run.sh /usr/local/bin
 
 VOLUME ["/var/log/privoxy"]
 
-# USER privoxy
+USER privoxy
 ENTRYPOINT ["/usr/local/bin/run.sh"]
-CMD ["--no-daemon", "--user", "privoxy", "/etc/privoxy/config"]
+CMD ["--no-daemon", "/etc/privoxy/config"]
