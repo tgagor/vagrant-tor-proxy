@@ -1,7 +1,7 @@
 ######################################################################
-# 
+#
 #  File        :  user.action
-# 
+#
 #  Purpose     :  User-maintained actions file, see
 #                 https://www.privoxy.org/user-manual/actions-file.html
 #
@@ -36,12 +36,12 @@
 #
 # Alias names are not case sensitive.
 #
-# Aliases beginning with '+' or '-' may be used for system action names 
-# in future releases - so try to avoid alias names like this.  (e.g. 
+# Aliases beginning with '+' or '-' may be used for system action names
+# in future releases - so try to avoid alias names like this.  (e.g.
 # "+crunch-all-cookies" below is not a good name)
 #
 # Aliases must be defined before they are used.
-# 
+#
 # These aliases just save typing later:
 #
 +crunch-all-cookies = +crunch-incoming-cookies +crunch-outgoing-cookies
@@ -124,7 +124,7 @@ www.example.com/nasty-ads/sponsor.gif
 # The URLs of dynamically generated banners, especially from large banner
 # farms, often don't use the well-known image file name extensions, which
 # makes it impossible for Privoxy to guess the file type just by looking
-# at the URL. 
+# at the URL.
 # You can use the +block-as-image alias defined above for these cases.
 # Note that objects which match this rule but then turn out NOT to be an
 # image are typically rendered as a "broken image" icon by the browser.
@@ -142,7 +142,7 @@ www.example.com/nasty-ads/sponsor.gif
 # 'fragile' aliases disables those actions that are most likely to break
 # a site. Also, good for testing purposes to see if it is Privoxy that
 # is causing the problem or not.
-# 
+#
 { fragile }
 #.forbes.com
 
@@ -191,5 +191,6 @@ www.example.com/nasty-ads/sponsor.gif
 # Blocked URL = http://www.facebook.com/plugins/like.php?api_key=368513495882&channel_url=http%3A%2F%2Fstatic.ak.fbcdn.net%2Fconnect%2Fxd_proxy.php%3Fversion%3D3%23cb%3Df13997452c%26origin%3Dhttp%253A%252F%252Fonline.wsj.com%252Ff1b037e354%26relation%3Dparent.parent%26transport%3Dpostmessage&extended_social_context=false&href=http%3A%2F%2Fonline.wsj.com%2Farticle%2FSB10001424052970204485304576640791304008536.html&layout=button_count&locale=en_US&node_type=link&ref=wsj_share_FB&sdk=joey&send=false&show_faces=false&width=90
 # Ignore = Yes
 #
-#{+block{Facebook "like" and similar tracking URLs.}}
-#www.facebook.com/(extern|plugins)/(login_status|like(box)?|activity|fan)\.php
+{+block-as-image{Facebook "like" and similar tracking URLs.}}
+www.facebook.com/(extern|plugins)/(login_status|like(box)?|activity|fan)\.php
+platform.twitter.com/widgets/follow_button?

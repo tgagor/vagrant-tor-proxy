@@ -5,16 +5,19 @@ EXPOSE 8118
 ENV TOR_HOST=127.0.0.1
 ENV TOR_PORT=9050
 
-# https://github.com/essandess/adblock2privoxy/tree/master/adblock2privoxy
-
-RUN apk --no-cache --update add privoxy && \
+RUN apk --no-cache --update add privoxy curl bash && \
     sed -i'' 's/127\.0\.0\.1:8118/0\.0\.0\.0:8118/' /etc/privoxy/config && \
+# disable logging
     sed -i'' 's/^logfile/# logfile/' /etc/privoxy/config
 
 # https://wiki.archlinux.org/index.php/Privoxy#Ad_Blocking_with_Privoxy
-# COPY etc/ /etc/
-# RUN curl -fL https://raw.githubusercontent.com/Andrwe/privoxy-blocklist/master/privoxy-blocklist.sh -o /usr/local/bin/privoxy-blocklist.sh && \
-#     chmod +x /usr/local/bin/privoxy-blocklist.sh
+# https://github.com/essandess/adblock2privoxy/tree/master/adblock2privoxy
+COPY etc/ /etc/
+# curl -fL https://raw.githubusercontent.com/Andrwe/privoxy-blocklist/master/privoxy-blocklist.sh -o /usr/local/bin/privoxy-blocklist.sh && \
+COPY usr/ /usr/
+RUN chown privoxy:privoxy /etc/privoxy/user.action && \
+    chmod +x /usr/local/bin/privoxy-blocklist.sh && \
+    /usr/local/bin/privoxy-blocklist.sh
 
 COPY run.sh /usr/local/bin
 
