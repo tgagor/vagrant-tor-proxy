@@ -7,7 +7,7 @@ ENV TOR_PORT=9050
 
 # https://github.com/essandess/adblock2privoxy/tree/master/adblock2privoxy
 
-RUN apk --no-cache --update add privoxy curl bash && \
+RUN apk --no-cache --update add privoxy && \
     sed -i'' 's/127\.0\.0\.1:8118/0\.0\.0\.0:8118/' /etc/privoxy/config && \
     sed -i'' 's/^logfile/# logfile/' /etc/privoxy/config
 
