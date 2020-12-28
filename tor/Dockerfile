@@ -1,6 +1,6 @@
 FROM alpine:3
 
-EXPOSE 9150
+EXPOSE 9050
 
 RUN apk --no-cache --update add tor && \
     chmod 0700 /var/lib/tor
