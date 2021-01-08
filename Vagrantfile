@@ -23,7 +23,7 @@ Vagrant.configure("2") do |config|
   # Share a folder with configuration to the guest VM
   config.vm.synced_folder ".", "/vagrant"
 
-  # Provisioning scritp
+  # Provisioning script
   # config.vm.provision "shell", path: "conf/provision.sh"
 
   if Vagrant.has_plugin?("vagrant-vbguest") then
