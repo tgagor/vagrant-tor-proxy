@@ -6,6 +6,12 @@ ENV TOR_HOST=127.0.0.1
 ENV TOR_PORT=9050
 
 RUN apk --no-cache --update add privoxy curl bash && \
+    ( \
+        cd /etc/privoxy && \
+        for f in *.new; \
+            do mv $f $(basename $f .new); \
+        done \
+    ) && \
     sed -i'' 's/127\.0\.0\.1:8118/0\.0\.0\.0:8118/' /etc/privoxy/config && \
 # disable logging
     sed -i'' 's/^logfile/# logfile/' /etc/privoxy/config
