@@ -7,6 +7,11 @@ From time to time I need to hide myself behind the proxy, for privacy or just to
 
 Both Vagrant and Docker Compose configs base on Alpine Linux.
 
+# Configuration
+
+* to access tor SOCKS5 proxy use localhost:9050
+* to access privoxy HTTP proxy use localhost:8118
+
 # How to run?
 
 With Vagrant:
@@ -20,11 +25,6 @@ With Docker Compose:
 ```bash
 docker-compose up -d
 ```
-
-# Configuration
-
-* to access tor SOCKS5 proxy use localhost:9050
-* to access privoxy HTTP proxy use localhost:8118
 
 # Clean up
 
